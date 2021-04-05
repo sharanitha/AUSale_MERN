@@ -1,10 +1,16 @@
 {
   "name": "mern",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "server": "nodemon server.js",
+    "client": "cd client && npm run start",
+    "server-install": "npm install",
+    "client-install": "cd client && npm install",
+    "install-all": "concurrently \"npm run server-install\" \"npm run client-install\"",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
@@ -23,5 +29,14 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sharanitha/AUSale_MERN.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sharanitha/AUSale_MERN/issues"
+  },
+  "homepage": "https://github.com/sharanitha/AUSale_MERN#readme",
+  "description": ""
 }
