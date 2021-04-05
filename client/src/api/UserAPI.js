@@ -5,7 +5,7 @@ function UserAPI(token) {
     const [isLogged, setIsLogged] = useState(false)
     const [isAdmin, setIsAdmin] = useState(false)
     const [cart, setCart] = useState([])
-    const [history, setHistory] = useState([])
+    const [history, setHistory] = useState([]) 
 
     useEffect(() =>{
         if(token){
