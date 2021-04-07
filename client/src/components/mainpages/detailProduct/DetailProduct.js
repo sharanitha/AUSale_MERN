@@ -29,12 +29,11 @@ function DetailProduct() {
                 <div className="box-detail">
                     <div className="row">
                         <h2>{detailProduct.title}</h2>
-                        <h6>#id: {detailProduct.product_id}</h6>
                     </div>
                     <span>$ {detailProduct.price}</span>
                     <p>{detailProduct.description}</p>
                     <p>{detailProduct.content}</p>
-                    <p>Sold: {detailProduct.sold}</p>
+                    <p>Sold Status: {detailProduct.sold}</p>
                     <Link to="/cart" className="cart" onClick={() => addCart(detailProduct)}> 
                         Buy Now
                     </Link>

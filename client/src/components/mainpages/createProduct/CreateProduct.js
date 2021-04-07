@@ -5,11 +5,10 @@ import Loading from '../utils/loading/Loading'
 import {useHistory, useParams} from 'react-router-dom'
 
 const initialState = {
-    product_id : '',
     title : '',
     price: 0,
-    description : 'AU Sale store',
-    content : 'Different Products',
+    description : 'Description of product goes here',
+    content : 'Add any specifications about product here',
     category: '',
     _id: ''
 }
@@ -23,6 +22,7 @@ function CreateProduct() {
     const [loading, setLoading] = useState(false)
 
     const [isAdmin] = state.userAPI.isAdmin
+    const [isLogged] = state.userAPI.isLogged
     const [token] = state.token
 
     const history = useHistory()
@@ -59,10 +59,6 @@ function CreateProduct() {
     const handleUpload = async e =>{
         e.preventDefault()
         try{
-            if(!isAdmin){
-                return alert("You are not an admin")
-            }
-
             const file = e.target.files[0]
             //console.log(file)
 
@@ -120,7 +116,8 @@ function CreateProduct() {
     const handleSubmit = async e =>{
         e.preventDefault()
         try{
-            if(!isAdmin) return alert("You are not an admin")
+            //if(!isAdmin) return alert("You are not an admin")
+            if(!isLogged) return alert("You are not logged in")
             if(!images) return alert("No image has been uploaded")
 
             if(onEdit){
@@ -161,19 +158,13 @@ function CreateProduct() {
 
             <form onSubmit={handleSubmit} >
                 <div className='row'>
-                    <label htmlFor='product_id'>Product ID</label>
-                    <input type='text' name='product_id' id='product_id' required value={product.product_id}
-                     onChange={handleChangeInput} disabled={onEdit} />
-                </div>
-
-                <div className='row'>
                     <label htmlFor='title'>Title</label>
                     <input type='text' name='title' id='title' required value={product.title} onChange={handleChangeInput}/>
                 </div>
 
                 <div className='row'>
                     <label htmlFor='price'>Price</label>
-                    <input type='number' name='price' id='prrice' required value={product.price} onChange={handleChangeInput}/>
+                    <input type='number' name='price' id='price' required value={product.price} onChange={handleChangeInput}/>
                 </div>
 
                 <div className='row'>
