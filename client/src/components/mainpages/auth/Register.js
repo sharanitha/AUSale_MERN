@@ -4,7 +4,7 @@ import axios from 'axios'
 
 function Register() {
     const [user, setUser] = useState({
-        name:'', email:'', password: ''
+        firstName:'', lastName:'', email:'', password: ''
     })
 
     const onChangeInput = e =>{
@@ -30,8 +30,11 @@ function Register() {
         <div className="login-page">
             <form onSubmit={registerSubmit}>
                 <h2>Register</h2>
-                <input type="text" name="name" required
-                placeholder="Name" value={user.name} onChange={onChangeInput} />
+                <input type="text" name="firstName" required
+                placeholder="First Name" value={user.firstName} onChange={onChangeInput} />
+
+                <input type="text" name="lastName" required
+                placeholder="Last Name" value={user.lastName} onChange={onChangeInput} />
 
                 <input type="email" name="email" required
                 placeholder="Email" value={user.email} onChange={onChangeInput} />

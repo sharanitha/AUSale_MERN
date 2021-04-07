@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const userCtrl = {
     register: async (req, res) =>{
         try{
-            const {name, email, password} = req.body;
+            const {firstName, lastName, email, password} = req.body;
 
             const user = await Users.findOne({email});
             if(user){
@@ -20,7 +20,7 @@ const userCtrl = {
             const passwordHash = await bcrypt.hash(password, 10)
 
             const newUser = new Users({
-                name, email, password: passwordHash
+                firstName, lastName, email, password: passwordHash
             })
 
             // save to mongodb

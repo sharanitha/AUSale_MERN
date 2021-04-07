@@ -4,7 +4,7 @@ import axios from 'axios'
 function UserAPI(token) {
     const [isLogged, setIsLogged] = useState(false)
     const [isAdmin, setIsAdmin] = useState(false)
-    const [userName, setUserName] = useState('')
+    const [firstName, setFirstName] = useState('')
     const [cart, setCart] = useState([])
     const [history, setHistory] = useState([])
 
@@ -17,7 +17,8 @@ function UserAPI(token) {
                     })
 
                     //console.log('User Information fom userAPI.js ', res);
-                    setUserName(res.data.name)
+                    //console.log('User Information fom userAPI.js ', res.data.firstName);
+                    setFirstName(res.data.firstName)
 
                     setIsLogged(true)
                     res.data.role === 1 ? setIsAdmin(true) : setIsAdmin(false)
@@ -58,7 +59,7 @@ function UserAPI(token) {
     return {
         isLogged: [isLogged, setIsLogged],
         isAdmin: [isAdmin, setIsAdmin],
-        userName: [userName, setUserName],
+        firstName: [firstName, setFirstName],
         cart: [cart, setCart],
         addCart: addCart,
         history: [history, setHistory]

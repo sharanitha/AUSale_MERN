@@ -10,7 +10,7 @@ function Header() {
     const state = useContext(GlobalState)
     const [isLogged] = state.userAPI.isLogged
     const [isAdmin] = state.userAPI.isAdmin
-    const [userName] = state.userAPI.userName
+    const [firstName] = state.userAPI.firstName
     const [cart] = state.userAPI.cart
     const [menu, setMenu] = useState(false)
 
@@ -58,7 +58,7 @@ function Header() {
             </div>
 
             <div>
-                {isLogged ? `Welcome, ${userName}` : ''}
+                {isLogged ? `Welcome, ${firstName}` : ''}
             </div>
 
             <ul style={styleMenu}>
