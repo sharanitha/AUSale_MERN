@@ -9,6 +9,7 @@ const initialState = {
     price: 0,
     description : 'Description of product goes here',
     content : 'Add any specifications about product here',
+    status: 'For Sale',
     category: '',
     _id: ''
 }
@@ -188,6 +189,20 @@ function CreateProduct() {
                         }
                     </select>
                 </div>
+
+                {
+                    onEdit ?
+                    <div className='row'>
+                    <label htmlFor='title'>Status: </label>
+                    <select name='status' value={product.status} onChange={handleChangeInput}>
+                        <option value='For Sale'>For Sale</option>
+                        <option value='Pending'>Pending</option>
+                        <option value='Sold'>Sold</option>
+                    </select>
+                    </div>
+                    :
+                    <input type='hidden' name='status' id='status' required value={product.status} onChange={handleChangeInput}/>
+                }
 
                 <button type='submit'>{onEdit ? "Update" : "Create"}</button>
             </form>

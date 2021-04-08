@@ -19,6 +19,9 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    status:{
+        type: String,
+    },
     images:{
         type: Object,
         required: true
@@ -30,10 +33,6 @@ const productSchema = new mongoose.Schema({
     checked:{
         type: Boolean,
         default: false
-    },
-    sold:{
-        type: Number,
-        default: 0
     }
 }, {
     timestamps: true //important

@@ -67,7 +67,7 @@ const productCtrl = {
     },
     createProduct: async(req, res) =>{
         try {
-            const {product_id, title, price, description, content, images, category} = req.body;
+            const {title, price, description, content, status, images, category} = req.body;
             if(!images) return res.status(400).json({msg: "No image upload"})
 
             /*
@@ -79,7 +79,7 @@ const productCtrl = {
             */
 
             const newProduct = new Products({
-                product_id, title: title.toLowerCase(), price, description, content, images, category
+                title: title.toLowerCase(), price, description, content, status, images, category
             });
 
             //res.json(newProduct)
@@ -101,11 +101,11 @@ const productCtrl = {
     },
     updateProduct: async(req, res) =>{
         try {
-            const {title, price, description, content, images, category} = req.body;
+            const {title, price, description, content, status, images, category} = req.body;
             if(!images) return res.status(400).json({msg: "No image upload"})
 
             await Products.findOneAndUpdate({_id: req.params.id}, {
-                title: title.toLowerCase(), price, description, content, images, category
+                title: title.toLowerCase(), price, description, content, status, images, category
             })
 
             res.json({msg: "Updated a Product"})
