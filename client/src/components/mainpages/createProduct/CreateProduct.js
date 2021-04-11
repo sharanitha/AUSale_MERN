@@ -4,19 +4,22 @@ import {GlobalState} from '../../../GlobalState'
 import Loading from '../utils/loading/Loading'
 import {useHistory, useParams} from 'react-router-dom'
 
-const initialState = {
-    title : '',
-    price: 0,
-    description : 'Description of product goes here',
-    content : 'Add any specifications about product here',
-    status: 'For Sale',
-    category: '',
-    _id: ''
-}
-
 function CreateProduct() {
 
     const state = useContext(GlobalState)
+    const [userID] = state.userAPI.userID
+
+    const initialState = {
+        title : '',
+        price: 0,
+        description : 'Description of product goes here',
+        content : 'Add any specifications about product here',
+        status: 'For Sale',
+        category: '',
+        _id: '',
+        seller: `${userID}`
+    }
+
     const [product, setProduct] = useState(initialState)
     const [categories] = state.categoriesAPI.categories
     const [images, setImages] = useState(false)
@@ -93,7 +96,7 @@ function CreateProduct() {
     //delete the uploaded image if it's not the one the user wants or changes their mind
     const handleDestroy = async () =>{
         try{
-            if(!isAdmin) return alert("You are not an admin")
+            //if(!isAdmin) return alert("You are not an admin")
 
             setLoading(true)
             await axios.post('/api/destroy', {public_id: images.public_id},

@@ -1,10 +1,10 @@
-import React, {useContext, useEffect} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import {GlobalState} from '../../../GlobalState'
 import ProductItem from '../utils/productItem/ProductItem'
 import Loading from '../utils/loading/Loading'
 import axios from 'axios'
-//import Filters from './Filters'
-//import LoadMore from './LoadMore'
+import Filters from './Filters'
+import LoadMore from './LoadMore'
 
 function Products() {
     const state = useContext(GlobalState)
@@ -12,6 +12,7 @@ function Products() {
     const [isAdmin] = state.userAPI.isAdmin
     const [token] = state.token
     const [callback, setCallback] = state.productsAPI.callback
+    const [loading, setLoading] = useState(false)
 
     useEffect(() =>{
         const getProducts = async () =>{
@@ -22,8 +23,11 @@ function Products() {
 
     }, [setProducts])
 
+    if(loading) return <div><Loading /></div>
     return (
         <>
+        <Filters />
+
         <div className="products">
             {
                 products.map(product => {
@@ -32,6 +36,8 @@ function Products() {
                 })
             } 
         </div>
+
+        <LoadMore />
         {products.length === 0 && <Loading/>}
         </>
     )

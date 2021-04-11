@@ -5,6 +5,7 @@ function UserAPI(token) {
     const [isLogged, setIsLogged] = useState(false)
     const [isAdmin, setIsAdmin] = useState(false)
     const [firstName, setFirstName] = useState('')
+    const [userID, setUserID] = useState('')
     const [cart, setCart] = useState([])
     const [history, setHistory] = useState([])
 
@@ -17,8 +18,9 @@ function UserAPI(token) {
                     })
 
                     //console.log('User Information fom userAPI.js ', res);
-                    //console.log('User Information fom userAPI.js ', res.data.firstName);
+                    //console.log('User Information fom userAPI.js ', res.data._id);
                     setFirstName(res.data.firstName)
+                    setUserID(res.data._id)
 
                     setIsLogged(true)
                     res.data.role === 1 ? setIsAdmin(true) : setIsAdmin(false)
@@ -60,6 +62,7 @@ function UserAPI(token) {
         isLogged: [isLogged, setIsLogged],
         isAdmin: [isAdmin, setIsAdmin],
         firstName: [firstName, setFirstName],
+        userID: [userID, setUserID],
         cart: [cart, setCart],
         addCart: addCart,
         history: [history, setHistory]

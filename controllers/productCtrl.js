@@ -67,19 +67,13 @@ const productCtrl = {
     },
     createProduct: async(req, res) =>{
         try {
-            const {title, price, description, content, status, images, category} = req.body;
+            //console.log("Req body: ", req.body)
+
+            const {title, price, description, content, status, images, category, seller} = req.body;
             if(!images) return res.status(400).json({msg: "No image upload"})
 
-            /*
-            //check if product already exists
-            const product = await Products.findOne({product_id})
-            if(product){
-                return res.status(400).json({msg: "This product already exists."})
-            }
-            */
-
             const newProduct = new Products({
-                title: title.toLowerCase(), price, description, content, status, images, category
+                title: title.toLowerCase(), price, description, content, status, images, category, seller
             });
 
             //res.json(newProduct)
