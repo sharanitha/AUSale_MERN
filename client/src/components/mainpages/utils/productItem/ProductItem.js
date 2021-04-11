@@ -1,6 +1,4 @@
-  
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
 import BtnRender from './BtnRender';
 import axios from 'axios';
 import Loading from '../loading/Loading'

@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import {Switch, Route, Router} from 'react-router-dom'
+import {Switch, Route} from 'react-router-dom'
 import Products from './products/Products'
 import DetailProduct from './detailProduct/DetailProduct'
 import Login from './auth/Login'
