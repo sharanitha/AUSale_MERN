@@ -5,6 +5,7 @@ import DetailProduct from './detailProduct/DetailProduct'
 import Login from './auth/Login'
 import Register from './auth/Register'
 import OrderHistory from './history/OrderHistory'
+import SoldHistory from './history/SoldHistory'
 import OrderDetails from './history/OrderDetails'
 import Cart from './cart/Cart'
 import NotFound from './utils/not_found/NotFound'
@@ -31,7 +32,7 @@ function Pages(){
             <Route path="/create_product" exact component={CreateProduct} />
             <Route path="/edit_product/:id" exact component={isAdmin ? CreateProduct : NotFound} />
 
-            <Route path="/history" exact component={isLogged ? OrderHistory : NotFound} />
+            <Route path="/history" exact component={isLogged ? SoldHistory : NotFound} />
             <Route path="/history/:id" exact component={isLogged ? OrderDetails : NotFound} />
 
             <Route path='/cart' exact component={Cart}/>
