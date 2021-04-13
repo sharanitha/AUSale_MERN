@@ -9,6 +9,7 @@ function CreateProduct() {
     const state = useContext(GlobalState)
     const [userID] = state.userAPI.userID
 
+
     const initialState = {
         title : '',
         price: 0,
@@ -19,13 +20,11 @@ function CreateProduct() {
         _id: '',
         seller: `${userID}`
     }
-
     const [product, setProduct] = useState(initialState)
     const [categories] = state.categoriesAPI.categories
     const [images, setImages] = useState(false)
     const [loading, setLoading] = useState(false)
 
-    const [isAdmin] = state.userAPI.isAdmin
     const [isLogged] = state.userAPI.isLogged
     const [token] = state.token
 
@@ -161,11 +160,7 @@ function CreateProduct() {
             </div>
 
             <form onSubmit={handleSubmit}>
-                <div className="row">
-                    <label htmlFor="product_id">Product ID</label>
-                    <input type="text" name="product_id" id="product_id" required
-                    value={product.product_id} onChange={handleChangeInput} disabled={onEdit} />
-                </div>
+                
 
                 <div className="row">
                     <label htmlFor="title">Title</label>

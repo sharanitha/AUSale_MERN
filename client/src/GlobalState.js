@@ -26,7 +26,7 @@ export const DataProvider = ({children}) =>{
             }
             refreshToken()
         }
-    },[])
+    },[]);
 
 
     

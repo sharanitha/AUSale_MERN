@@ -73,7 +73,7 @@ function Products() {
             {
                 products.map(product => {
                     return <ProductItem key={product._id} product={product}
-                    isAdmin={isAdmin} deleteProduct={deleteProduct} handleCheck={handleCheck} />
+                    deleteProduct={deleteProduct} handleCheck={handleCheck} />
                 })
             } 
         </div>
