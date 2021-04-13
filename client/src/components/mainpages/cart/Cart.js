@@ -1,12 +1,12 @@
 import React, {useContext, useState, useEffect} from 'react'
-import{GlobalState} from '../../../GlobalState'
-import {Link} from 'react-router-dom'
+import {GlobalState} from '../../../GlobalState'
 import axios from 'axios'
+import PaypalButton from './PaypalButton'
 
 function Cart() {
     const state = useContext(GlobalState)
     const [cart, setCart] = state.userAPI.cart
-    const[token] = state.token
+    const [token] = state.token
     const [total, setTotal] = useState(0)
 
     useEffect(() =>{
@@ -63,7 +63,8 @@ function Cart() {
         }
     }
 
-    /*const tranSuccess = async(payment) => {
+    //for PayPal Functionality
+    const tranSuccess = async(payment) => {
         const {paymentID, address} = payment;
 
         await axios.post('/api/payment', {cart, paymentID, address}, {
@@ -73,7 +74,8 @@ function Cart() {
         setCart([])
         addToCart([])
         alert("You have successfully placed an order.")
-    }*/
+    }
+
 
     if(cart.length === 0) 
         return <h2 style={{textAlign: "center", fontSize: "5rem"}}>Cart Empty</h2> 
@@ -81,7 +83,7 @@ function Cart() {
     return (
         <div>
             {
-                cart.map(product =>(
+                cart.map(product => (
                     <div className="detail cart" key={product._id}>
                         <img src={product.images.url} alt="" />
 
@@ -95,17 +97,23 @@ function Cart() {
                             <div className="amount">
                                 <button onClick={() => decrement(product._id)}> - </button>
                                 <span>{product.quantity}</span>
-                                <button onClick={() => increment(product._id)}> + </button> 
+                                <button onClick={() => increment(product._id)}> + </button>
                             </div>
                             
-                            <div className="delete" onClick={() => removeProduct(product._id)}> X </div>
+                            <div className="delete" 
+                            onClick={() => removeProduct(product._id)}>
+                                X
+                            </div>
                         </div>
                     </div>
                 ))
             }
-        <div className="total">
-                <h3>Total: ${total} </h3>
-                <Link to="#!">Payment</Link> 
+
+            <div className="total">
+                <h3>Total: $ {total}</h3>
+                <PaypalButton
+                total={total}
+                tranSuccess={tranSuccess} />
             </div>
         </div>
     )

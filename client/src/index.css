@@ -58,7 +58,7 @@ button{
 /* ------------------- Create Product -------------- */
 @import url("./components/mainpages/createProduct/createProduct.css");
 
-
+/* ----------------- Responsive ------------------ */
 @media (max-width: 820px){
   header .logo{
     min-width: 115px;
@@ -133,4 +133,3 @@ button{
     margin: 20px 0;
   }
 }
-

@@ -6,7 +6,6 @@ import axios from 'axios'
 import Filters from './Filters'
 import LoadMore from './LoadMore'
 
-
 function Products() {
     const state = useContext(GlobalState)
     const [products, setProducts] = state.productsAPI.products
@@ -80,7 +79,7 @@ function Products() {
         </div>
 
         <LoadMore />
-        {products.length === 0 && <Loading />}
+        {products.length === 0 && <Loading/>}
         </>
     )
 }

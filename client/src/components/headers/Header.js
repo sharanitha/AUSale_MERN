@@ -10,6 +10,7 @@ function Header() {
     const state = useContext(GlobalState)
     const [isLogged] = state.userAPI.isLogged
     const [isAdmin] = state.userAPI.isAdmin
+    const [firstName] = state.userAPI.firstName
     const [cart] = state.userAPI.cart
     const [menu, setMenu] = useState(false)
 
@@ -24,7 +25,6 @@ function Header() {
     const adminRouter = () =>{
         return(
             <>
-                <li><Link to="/create_product">Create Product</Link></li>
                 <li><Link to="/category">Categories</Link></li>
             </>
         )
@@ -33,6 +33,7 @@ function Header() {
     const loggedRouter = () =>{
         return(
             <>
+                <li><Link to="/create_product">Create Product</Link></li>
                 <li><Link to="/history">History</Link></li>
                 <li><Link to="/" onClick={logoutUser}>Logout</Link></li>
             </>
@@ -54,6 +55,10 @@ function Header() {
                 <h1>
                     <Link to="/">{isAdmin ? 'Admin' : 'AU Sale Site'}</Link>
                 </h1>
+            </div>
+
+            <div>
+                {isLogged ? `Welcome, ${firstName}` : ''}
             </div>
 
             <ul style={styleMenu}>

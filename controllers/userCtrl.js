@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const userCtrl = {
     register: async (req, res) =>{
         try{
-            const {name, email, password} = req.body;
+            const {firstName, lastName, email, password} = req.body;
 
             const user = await Users.findOne({email});
             if(user){
@@ -21,7 +21,7 @@ const userCtrl = {
             const passwordHash = await bcrypt.hash(password, 10)
 
             const newUser = new Users({
-                name, email, password: passwordHash
+                firstName, lastName, email, password: passwordHash
             })
 
             // save to mongodb
@@ -112,7 +112,7 @@ const userCtrl = {
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }
-    }, 
+    },
     addCart: async (req, res) =>{
         try {
             const user = await Users.findById(req.user.id)
@@ -136,14 +136,14 @@ const userCtrl = {
             return res.status(500).json({msg: err.message})
         }
     }
- }
+}
 
 const createAccessToken = (user) =>{
-    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '1d'})
+    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '15m'})
 }
 
 const createRefreshToken = (user) =>{
-    return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {expiresIn: '7d'})
+    return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {expiresIn: '1d'})
 }
 
 module.exports = userCtrl;
