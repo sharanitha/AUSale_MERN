@@ -22,7 +22,7 @@ function CreateProduct() {
     const [loading, setLoading] = useState(false)
 
 
-    const [isAdmin] = state.userAPI.isAdmin
+    const [isLogged] = state.userAPI.isAdmin
     const [token] = state.token
 
     const history = useHistory()
@@ -51,7 +51,7 @@ function CreateProduct() {
     const handleUpload = async e =>{
         e.preventDefault()
         try {
-            if(!isAdmin) return alert("You're not an admin")
+           // if(!isAdmin) return alert("You're not an admin")
             const file = e.target.files[0]
             
             if(!file) return alert("File not exist.")
@@ -79,7 +79,7 @@ function CreateProduct() {
 
     const handleDestroy = async () => {
         try {
-            if(!isAdmin) return alert("You're not an admin")
+            //if(!isAdmin) return alert("You're not an admin")
             setLoading(true)
             await axios.post('/api/destroy', {public_id: images.public_id}, {
                 headers: {Authorization: token}
@@ -99,7 +99,8 @@ function CreateProduct() {
     const handleSubmit = async e =>{
         e.preventDefault()
         try {
-            if(!isAdmin) return alert("You're not an admin")
+            //if(!isAdmin) return alert("You're not an admin")
+            if(!isLogged) return alert("You are not logged in")
             if(!images) return alert("No Image Upload")
 
             if(onEdit){
