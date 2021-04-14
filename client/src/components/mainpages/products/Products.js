@@ -6,7 +6,6 @@ import axios from 'axios'
 import Filters from './Filters'
 import LoadMore from './LoadMore'
 
-
 function Products() {
     const state = useContext(GlobalState)
     const [products, setProducts] = state.productsAPI.products
@@ -74,13 +73,13 @@ function Products() {
             {
                 products.map(product => {
                     return <ProductItem key={product._id} product={product}
-                    isAdmin={isAdmin} deleteProduct={deleteProduct} handleCheck={handleCheck} />
+                    deleteProduct={deleteProduct} handleCheck={handleCheck} />
                 })
             } 
         </div>
 
         <LoadMore />
-        {products.length === 0 && <Loading />}
+        {products.length === 0 && <Loading/>}
         </>
     )
 }

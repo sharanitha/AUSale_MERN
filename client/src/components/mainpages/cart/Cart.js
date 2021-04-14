@@ -28,7 +28,6 @@ function Cart() {
         })
     }
 
-
     const increment = (id) =>{
         cart.forEach(item => {
             if(item._id === id){

@@ -1,7 +1,6 @@
 {
   "name": "mern",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
@@ -30,5 +29,14 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sharanitha/AUSale_MERN.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sharanitha/AUSale_MERN/issues"
+  },
+  "homepage": "https://github.com/sharanitha/AUSale_MERN#readme",
+  "description": ""
 }

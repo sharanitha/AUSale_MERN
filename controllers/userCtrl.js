@@ -1,4 +1,5 @@
 const Users = require('../models/userModel')
+const Payments = require('../models/paymentModel')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -32,7 +33,8 @@ const userCtrl = {
 
             res.cookie('refreshtoken', refreshtoken, {
                 httpOnly: true,
-                path: '/user/refresh_token'
+                path: '/user/refresh_token',
+                maxAge: 7*24*60*60*1000 
             })
 
             //res.json(newUser)
