@@ -1,10 +1,7 @@
 import React, {useContext, useState} from 'react'
 import {GlobalState} from '../../../GlobalState'
-import ProductItem from '../utils/productItem/ProductItem'
 import Loading from '../utils/loading/Loading'
 import axios from 'axios'
-import Filters from '../products/Filters'
-import LoadMore from '../products/LoadMore'
 
 function Products() {
     const state = useContext(GlobalState)
@@ -56,6 +53,8 @@ function Products() {
         })
     }
 
+
+    //for listing items that the logged in user has created
     const list = []
 
     products.forEach((product) =>{
@@ -72,8 +71,6 @@ function Products() {
     return (
         <div className="history-page">
             <h2>Seller History</h2>
-
-            <h4>You have {products.length} ordered</h4>
 
             <table>
                 <thead>
