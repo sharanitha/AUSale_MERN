@@ -72,8 +72,10 @@ function Products() {
         <div className="products">
             {
                 products.map(product => {
-                    return <ProductItem key={product._id} product={product}
-                    deleteProduct={deleteProduct} handleCheck={handleCheck} />
+                    if(product.status !== "Sold"){
+                        return <ProductItem key={product._id} product={product}
+                            deleteProduct={deleteProduct} handleCheck={handleCheck} />
+                    }
                 })
             } 
         </div>

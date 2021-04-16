@@ -75,11 +75,8 @@ function Products() {
                 <td>{product.status}</td>
                 <td>{product.price}</td>
             </tr>)
+            total += product.price
         }
-    })
-
-    products.forEach( p =>{
-        total += p.price
     })
 
     if(loading) return <div><Loading /></div>
