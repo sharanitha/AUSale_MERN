@@ -61,34 +61,31 @@ function Products() {
     var total = 0;
 
     products.forEach((product) =>{
-        if(product.seller === userID && product.status !== "Sold"){
+        if(product.status !== "Sold"){
             createdList.push(<tr key={product._id}>
                 <td>{product.title}</td>
                 <td>{product.createdAt}</td>
                 <td>{product.status}</td>
-                <td><Link to={`/edit_product/${product._id}`}>
-                        Edit
-                    </Link></td>
-                <td><Link to="#!" onClick={() =>deleteProduct(product._id, product.images.public_id)}>
-                        Delete
-                    </Link></td>
+                <td>{product.price}</td>
             </tr>)
-        } else if(product.seller === userID && product.status === "Sold"){
+        } else if(product.status === "Sold"){
             soldList.push(<tr key={product._id}>
                 <td>{product.title}</td>
                 <td>{product.createdAt}</td>
                 <td>{product.status}</td>
                 <td>{product.price}</td>
             </tr>)
-
-            total += product.price
         }
+    })
+
+    products.forEach( p =>{
+        total += p.price
     })
 
     if(loading) return <div><Loading /></div>
     return (
         <div className="history-page">
-            <h2>My Products</h2>
+            <h2>For Sale / Pending Items</h2>
 
             <table>
                 <thead>
@@ -96,8 +93,7 @@ function Products() {
                         <th>Title</th>
                         <th>Date Created</th>
                         <th>Status</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+                        <th>Sale Price</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -106,15 +102,15 @@ function Products() {
             </table>
 
             <br></br>
-            <h2>Products Sold</h2>
+            <h2>Sold Products</h2>
 
             <table>
                 <thead>
                     <tr>
                         <th>Title</th>
-                        <th>Date Sold</th>
+                        <th>Date Created</th>
                         <th>Status</th>
-                        <th>Price</th>
+                        <th>Purchase Price</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -122,7 +118,7 @@ function Products() {
                 </tbody>
             </table>
 
-            <h2>Total Sold: ${total}</h2>
+            <h2>Total = {total} </h2>
 
         </div>
     )

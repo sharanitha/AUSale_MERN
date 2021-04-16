@@ -26,7 +26,7 @@ function Header() {
         return(
             <>
                 <li><Link to="/category">Categories</Link></li>
-                <li><Link to="/">Reports</Link></li>
+                <li><Link to="/reports">Reports</Link></li>
                 <li><Link to="/" onClick={logoutUser}>Logout</Link></li>
             </>
         )
@@ -64,7 +64,7 @@ function Header() {
 
             <div className="logo">
                 <h1>
-                    <Link to="/">{isAdmin ? 'Admin' : 'AU Sale Site'}</Link>
+                    <Link to="/">AU Sale Site</Link>
                 </h1>
             </div>
 

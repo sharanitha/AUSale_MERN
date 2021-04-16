@@ -8,7 +8,7 @@ router.route('/products')
     .post(productCtrl.createProduct)
 
 router.route('/products/:id')
-    .delete(auth, authAdmin, productCtrl.deleteProduct)
+    .delete(auth, productCtrl.deleteProduct)
     .put(auth, productCtrl.updateProduct)
 
 module.exports = router

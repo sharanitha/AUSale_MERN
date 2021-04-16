@@ -6,6 +6,7 @@ import DetailProduct from './detailProduct/DetailProduct'
 import Login from './auth/Login'
 import Register from './auth/Register'
 import OrderHistory from './history/OrderHistory2'
+import Reports from './history/Reports'
 import MyProducts from './products/MyProducts'
 import OrderDetails from './history/OrderDetails'
 import Cart from './cart/Cart'
@@ -34,6 +35,7 @@ function Pages(){
             <Route path="/myproducts" exact component={MyProducts} />
             <Route path="/edit_product/:id" exact component={CreateProduct} />
 
+            <Route path="/reports" exact component={isLogged ? Reports : NotFound} />
             <Route path="/history" exact component={isLogged ? OrderHistory : NotFound} />
             <Route path="/history/:id" exact component={isLogged ? OrderDetails : NotFound} />
 
