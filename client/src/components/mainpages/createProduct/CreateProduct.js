@@ -18,7 +18,8 @@ function CreateProduct() {
         status: 'For Sale',
         category: '',
         _id: '',
-        seller: `${userID}`
+        seller: `${userID}`,
+        buyer: ''
     }
     const [product, setProduct] = useState(initialState)
     const [categories] = state.categoriesAPI.categories

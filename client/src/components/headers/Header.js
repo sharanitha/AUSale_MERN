@@ -26,6 +26,8 @@ function Header() {
         return(
             <>
                 <li><Link to="/category">Categories</Link></li>
+                <li><Link to="/">Reports</Link></li>
+                <li><Link to="/" onClick={logoutUser}>Logout</Link></li>
             </>
         )
     }
@@ -33,8 +35,17 @@ function Header() {
     const loggedRouter = () =>{
         return(
             <>
+                <li><Link to="/" onClick={logoutUser}>Logout</Link></li>
+            </>
+        )
+    }
+
+    const regUserRouter = () =>{
+        return(
+            <>
                 <li><Link to="/create_product">Create Product</Link></li>
-                <li><Link to="/history">History</Link></li>
+                <li><Link to="/myproducts">My Products</Link></li>
+                <li><Link to="/history">Order History</Link></li>
                 <li><Link to="/" onClick={logoutUser}>Logout</Link></li>
             </>
         )
@@ -65,10 +76,13 @@ function Header() {
                 <li><Link to="/">{isAdmin ? 'Products' : 'Shop'}</Link></li>
 
                 {isAdmin && adminRouter()}
+                {console.log(isAdmin)}
 
                 {
-                    isLogged ? loggedRouter() : <li><Link to="/login">Login/Register</Link></li>
+                    isLogged && !isAdmin ? regUserRouter() : ''
                 }
+
+                {!isLogged ? <li><Link to="/login">Login/Register</Link></li> : ''}
 
                 <li onClick={() => setMenu(!menu)}>
                     <img src={Close} alt="" width="30" className="menu" />

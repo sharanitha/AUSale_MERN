@@ -55,23 +55,13 @@ function Products() {
     }
 
     //for listing items that the logged in user has created
-    const createdList = []
-    const soldList = []
+    const orderList = []
 
     products.forEach((product) =>{
-        if(product.seller === userID && product.status != "Sold"){
-            createdList.push(<tr key={product._id}>
+        if(product.buyer === userID){
+            orderList.push(<tr key={product._id}>
                 <td>{product.title}</td>
-                <td>{product.createdAt}</td>
-                <td>{product.status}</td>
-                <td><Link to={`/edit_product/${product._id}`}>
-                        Edit
-                    </Link></td>
-            </tr>)
-        } else if(product.seller === userID && product.status === "Sold"){
-            soldList.push(<tr key={product._id}>
-                <td>{product.title}</td>
-                <td>{product.createdAt}</td>
+                <td>{product.updatedAt}</td>
                 <td>{product.status}</td>
                 <td>{product.price}</td>
             </tr>)
@@ -81,36 +71,19 @@ function Products() {
     if(loading) return <div><Loading /></div>
     return (
         <div className="history-page">
-            <h2>My Products</h2>
+            <h2>Order History</h2>
 
             <table>
                 <thead>
                     <tr>
                         <th>Title</th>
-                        <th>Date Created</th>
-                        <th>Status</th>
-                        <th>Edit</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {createdList}
-                </tbody>
-            </table>
-
-            <br></br>
-            <h2>Products Sold</h2>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Date Created</th>
+                        <th>Date Purchased</th>
                         <th>Status</th>
                         <th>Price</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {soldList}
+                    {orderList}
                 </tbody>
             </table>
 

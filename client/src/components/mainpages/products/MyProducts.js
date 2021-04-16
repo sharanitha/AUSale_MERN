@@ -104,7 +104,7 @@ function Products() {
                 <thead>
                     <tr>
                         <th>Title</th>
-                        <th>Date Created</th>
+                        <th>Date Sold</th>
                         <th>Status</th>
                         <th>Price</th>
                     </tr>
