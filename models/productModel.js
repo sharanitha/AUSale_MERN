@@ -33,6 +33,9 @@ const productSchema = new mongoose.Schema({
     seller:{
         type: String,
     },
+    buyer:{
+        type: String,
+    },
     checked:{
         type: Boolean,
         default: false

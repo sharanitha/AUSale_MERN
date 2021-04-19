@@ -58,14 +58,19 @@ function Products() {
     const createdList = []
     const soldList = []
 
+    var total = 0;
+
     products.forEach((product) =>{
-        if(product.seller === userID && product.status != "Sold"){
+        if(product.seller === userID && product.status !== "Sold"){
             createdList.push(<tr key={product._id}>
                 <td>{product.title}</td>
                 <td>{product.createdAt}</td>
                 <td>{product.status}</td>
                 <td><Link to={`/edit_product/${product._id}`}>
                         Edit
+                    </Link></td>
+                <td><Link to="#!" onClick={() =>deleteProduct(product._id, product.images.public_id)}>
+                        Delete
                     </Link></td>
             </tr>)
         } else if(product.seller === userID && product.status === "Sold"){
@@ -75,6 +80,8 @@ function Products() {
                 <td>{product.status}</td>
                 <td>{product.price}</td>
             </tr>)
+
+            total += product.price
         }
     })
 
@@ -90,6 +97,7 @@ function Products() {
                         <th>Date Created</th>
                         <th>Status</th>
                         <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -104,7 +112,7 @@ function Products() {
                 <thead>
                     <tr>
                         <th>Title</th>
-                        <th>Date Created</th>
+                        <th>Date Sold</th>
                         <th>Status</th>
                         <th>Price</th>
                     </tr>
@@ -113,6 +121,8 @@ function Products() {
                     {soldList}
                 </tbody>
             </table>
+
+            <h2>Total Sold: ${total}</h2>
 
         </div>
     )

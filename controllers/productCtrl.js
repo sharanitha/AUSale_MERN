@@ -69,11 +69,11 @@ const productCtrl = {
         try {
             //console.log("Req body: ", req.body)
 
-            const {title, price, description, content, status, images, category, seller} = req.body;
+            const {title, price, description, content, status, images, category, seller, buyer} = req.body;
             if(!images) return res.status(400).json({msg: "No image upload"})
 
             const newProduct = new Products({
-                title: title.toLowerCase(), price, description, content, status, images, category, seller
+                title: title.toLowerCase(), price, description, content, status, images, category, seller, buyer
             });
 
             //res.json(newProduct)
@@ -95,11 +95,11 @@ const productCtrl = {
     },
     updateProduct: async(req, res) =>{
         try {
-            const {title, price, description, content, status, images, category} = req.body;
+            const {title, price, description, content, status, images, category, buyer} = req.body;
             if(!images) return res.status(400).json({msg: "No image upload"})
 
             await Products.findOneAndUpdate({_id: req.params.id}, {
-                title: title.toLowerCase(), price, description, content, status, images, category
+                title: title.toLowerCase(), price, description, content, status, images, category, buyer
             })
 
             res.json({msg: "Updated a Product"})

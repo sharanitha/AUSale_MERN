@@ -1,5 +1,7 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useContext} from 'react'
 import axios from 'axios'
+//const Users = require('../models/userModel')
+//const Product = require('../models/productModel')
 
 function UserAPI(token) {
     const [isLogged, setIsLogged] = useState(false)
@@ -42,6 +44,15 @@ function UserAPI(token) {
     const addCart = async (product) => {
         if(!isLogged) return alert("Please login to continue buying")
 
+        product.buyer = userID
+        product.status = "Pending"
+        const title = product.title.toUpperCase()
+        alert(`You have bought ${title}`)
+
+        await axios.put(`/api/products/${product._id}`, {...product}, {headers: {Authorization : token}})
+
+
+        /*
         const check = cart.every(item =>{
             return item._id !== product._id
         })
@@ -55,7 +66,7 @@ function UserAPI(token) {
 
         }else{
             alert("This product has been added to cart.")
-        }
+        } */
     }
 
     return {

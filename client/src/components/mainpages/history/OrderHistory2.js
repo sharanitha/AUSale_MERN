@@ -1,15 +1,14 @@
 import React, {useContext, useState} from 'react'
 import {GlobalState} from '../../../GlobalState'
-import ProductItem from '../utils/productItem/ProductItem'
 import Loading from '../utils/loading/Loading'
 import axios from 'axios'
-import Filters from './Filters'
-import LoadMore from './LoadMore'
+import {Link} from 'react-router-dom'
 
 function Products() {
     const state = useContext(GlobalState)
     const [products, setProducts] = state.productsAPI.products
     const [isAdmin] = state.userAPI.isAdmin
+    const [userID] = state.userAPI.userID
     const [token] = state.token
     const [callback, setCallback] = state.productsAPI.callback
     const [loading, setLoading] = useState(false)
@@ -55,34 +54,40 @@ function Products() {
         })
     }
 
+    //for listing items that the logged in user has created
+    const orderList = []
+
+    products.forEach((product) =>{
+        if(product.buyer === userID){
+            orderList.push(<tr key={product._id}>
+                <td>{product.title}</td>
+                <td>{product.updatedAt}</td>
+                <td>{product.status}</td>
+                <td>{product.price}</td>
+            </tr>)
+        }
+    })
+
     if(loading) return <div><Loading /></div>
     return (
-        <>
-        <Filters />
-        
-        {
-            isAdmin && 
-            <div className="delete-all">
-                <span>Select all</span>
-                <input type="checkbox" checked={isCheck} onChange={checkAll} />
-                <button onClick={deleteAll}>Delete ALL</button>
-            </div>
-        }
+        <div className="history-page">
+            <h2>Order History</h2>
 
-        <div className="products">
-            {
-                products.map(product => {
-                    if(product.status !== "Sold"){
-                        return <ProductItem key={product._id} product={product}
-                            deleteProduct={deleteProduct} handleCheck={handleCheck} />
-                    }
-                })
-            } 
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Date Purchased</th>
+                        <th>Status</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {orderList}
+                </tbody>
+            </table>
+
         </div>
-
-        <LoadMore />
-        {products.length === 0 && <Loading/>}
-        </>
     )
 }
 
