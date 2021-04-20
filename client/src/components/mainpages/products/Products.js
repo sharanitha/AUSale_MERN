@@ -10,6 +10,7 @@ function Products() {
     const state = useContext(GlobalState)
     const [products, setProducts] = state.productsAPI.products
     const [isAdmin] = state.userAPI.isAdmin
+    const [userID] = state.userAPI.userID
     const [token] = state.token
     const [callback, setCallback] = state.productsAPI.callback
     const [loading, setLoading] = useState(false)
@@ -72,7 +73,7 @@ function Products() {
         <div className="products">
             {
                 products.map(product => {
-                    if(product.status !== "Sold"){
+                    if(product.status !== "Sold" && product.status !== "Pending" && product.seller !== userID){
                         return <ProductItem key={product._id} product={product}
                             deleteProduct={deleteProduct} handleCheck={handleCheck} />
                     }

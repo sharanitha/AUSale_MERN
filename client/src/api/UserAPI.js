@@ -18,8 +18,8 @@ function UserAPI(token) {
                     const res = await axios.get('/user/infor', {
                         headers: {Authorization: token}
                     })
-
-                    //console.log('User Information fom userAPI.js ', res);
+                    
+                    console.log('from UserAPI.js - User Information fom userAPI.js ', res);
                     //console.log('User Information fom userAPI.js ', res.data._id);
                     setFirstName(res.data.firstName)
                     setUserID(res.data._id)
@@ -39,8 +39,6 @@ function UserAPI(token) {
         }
     },[token])
 
-    
-
     const addCart = async (product) => {
         if(!isLogged) return alert("Please login to continue buying")
 
@@ -50,7 +48,6 @@ function UserAPI(token) {
         alert(`You have bought ${title}`)
 
         await axios.put(`/api/products/${product._id}`, {...product}, {headers: {Authorization : token}})
-
 
         /*
         const check = cart.every(item =>{

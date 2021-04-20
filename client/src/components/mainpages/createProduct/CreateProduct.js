@@ -3,12 +3,12 @@ import axios from 'axios'
 import {GlobalState} from '../../../GlobalState'
 import Loading from '../utils/loading/Loading'
 import {useHistory, useParams} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 function CreateProduct() {
 
     const state = useContext(GlobalState)
     const [userID] = state.userAPI.userID
-
 
     const initialState = {
         title : '',
@@ -59,6 +59,11 @@ function CreateProduct() {
         }
     }, [param.id, products])
 
+
+    const goBack = () => {
+        history.goBack()
+    }
+    
     //handles image uploads
     const handleUpload = async e =>{
         e.preventDefault()
@@ -216,6 +221,10 @@ function CreateProduct() {
                 }
 
                 <button type='submit'>{onEdit ? "Update" : "Create"}</button>
+                <div class="divider"/>
+                <button type="button" onClick={goBack}>
+                    Go back
+                </button>
             </form>
         </div>
     )

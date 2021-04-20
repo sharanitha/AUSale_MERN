@@ -23,8 +23,16 @@ code {
 a{
   text-decoration: none;
 }
+.divider{
+  width:5px;
+  height:auto;
+  display:inline-block;
+}
 ul li {
   list-style: none;
+}
+h2{
+  color: rgb(0, 0, 122);
 }
 button{
   border: none;

@@ -66,6 +66,7 @@ function Products() {
                 <td>{product.title}</td>
                 <td>{product.createdAt}</td>
                 <td>{product.status}</td>
+                <td>${product.price}.00</td>
                 <td><Link to={`/edit_product/${product._id}`}>
                         Edit
                     </Link></td>
@@ -78,7 +79,7 @@ function Products() {
                 <td>{product.title}</td>
                 <td>{product.createdAt}</td>
                 <td>{product.status}</td>
-                <td>{product.price}</td>
+                <td>${product.price}.00</td>
             </tr>)
 
             total += product.price
@@ -96,6 +97,7 @@ function Products() {
                         <th>Title</th>
                         <th>Date Created</th>
                         <th>Status</th>
+                        <th>Price</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
@@ -122,7 +124,7 @@ function Products() {
                 </tbody>
             </table>
 
-            <h2>Total Sold: ${total}</h2>
+            <h2>Total Sold: ${total}.00</h2>
 
         </div>
     )

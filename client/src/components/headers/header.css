@@ -13,7 +13,7 @@ header .logo{
 }
 header a{
     text-transform: uppercase;
-    color: #555;
+    color: rgb(14, 17, 209);
 }
 header ul li{
     display: inline-block;
