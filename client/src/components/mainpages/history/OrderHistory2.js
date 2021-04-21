@@ -61,9 +61,10 @@ function Products() {
         if(product.buyer === userID){
             orderList.push(<tr key={product._id}>
                 <td>{product.title}</td>
-                <td>{product.updatedAt}</td>
+                <td>{new Date(product.updatedAt).toLocaleDateString()}</td>
                 <td>{product.status}</td>
-                <td>{product.price}</td>
+                <td>{product.sellerEmail}</td>
+                <td>${product.price}.00</td>
             </tr>)
         }
     })
@@ -79,6 +80,7 @@ function Products() {
                         <th>Title</th>
                         <th>Date Purchased</th>
                         <th>Status</th>
+                        <th>Seller Email</th>
                         <th>Price</th>
                     </tr>
                 </thead>

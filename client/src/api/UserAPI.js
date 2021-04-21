@@ -8,6 +8,7 @@ function UserAPI(token) {
     const [isAdmin, setIsAdmin] = useState(false)
     const [firstName, setFirstName] = useState('')
     const [userID, setUserID] = useState('')
+    const [userEmail, setUserEmail] = useState('')
     const [cart, setCart] = useState([])
     const [history, setHistory] = useState([])
 
@@ -23,6 +24,7 @@ function UserAPI(token) {
                     //console.log('User Information fom userAPI.js ', res.data._id);
                     setFirstName(res.data.firstName)
                     setUserID(res.data._id)
+                    setUserEmail(res.data.email)
 
                     setIsLogged(true)
                     res.data.role === 1 ? setIsAdmin(true) : setIsAdmin(false)
@@ -43,6 +45,7 @@ function UserAPI(token) {
         if(!isLogged) return alert("Please login to continue buying")
 
         product.buyer = userID
+        product.buyerEmail = userEmail
         product.status = "Pending"
         const title = product.title.toUpperCase()
         alert(`You have bought ${title}`)
@@ -71,6 +74,7 @@ function UserAPI(token) {
         isAdmin: [isAdmin, setIsAdmin],
         firstName: [firstName, setFirstName],
         userID: [userID, setUserID],
+        userEmail: [userEmail, setUserEmail],
         cart: [cart, setCart],
         addCart: addCart,
         history: [history, setHistory]

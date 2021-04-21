@@ -13,22 +13,33 @@ function Products() {
 
     //for listing items that the logged in user has created
     const createdList = []
+    const pendingList = []
     const soldList = []
 
     var total = 0;
 
     products.forEach((product) =>{
-        if(product.status !== "Sold"){
+        if(product.status === "For Sale"){
             createdList.push(<tr key={product._id}>
                 <td>{product.title}</td>
-                <td>{product.createdAt}</td>
+                <td>{product.seller}</td>
+                <td>{new Date(product.createdAt).toLocaleDateString()}</td>
                 <td>{product.status}</td>
                 <td>${product.price}.00</td>
             </tr>)
-        } else if(product.status === "Sold"){
+        }else if(product.status === "Pending"){
+            pendingList.push(<tr key={product._id}>
+                <td>{product.title}</td>
+                <td>{product.seller}</td>
+                <td>{new Date(product.updatedAt).toLocaleDateString()}</td>
+                <td>{product.status}</td>
+                <td>${product.price}.00</td>
+            </tr>)
+        }else if(product.status === "Sold"){
             soldList.push(<tr key={product._id}>
                 <td>{product.title}</td>
-                <td>{product.createdAt}</td>
+                <td>{product.seller}</td>
+                <td>{new Date(product.updatedAt).toLocaleDateString()}</td>
                 <td>{product.status}</td>
                 <td>${product.price}.00</td>
             </tr>)
@@ -39,12 +50,13 @@ function Products() {
     if(loading) return <div><Loading /></div>
     return (
         <div className="history-page">
-            <h2>For Sale / Pending Items</h2>
+            <h2>For Sale Items</h2>
 
             <table>
                 <thead>
                     <tr>
                         <th>Title</th>
+                        <th>Seller ID</th>
                         <th>Date Created</th>
                         <th>Status</th>
                         <th>Sale Price</th>
@@ -56,13 +68,32 @@ function Products() {
             </table>
 
             <br></br>
+            <h2>Pending Items</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Seller ID</th>
+                        <th>Date Bought</th>
+                        <th>Status</th>
+                        <th>Sale Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {pendingList}
+                </tbody>
+            </table>
+
+            <br></br>
             <h2>Sold Products</h2>
 
             <table>
                 <thead>
                     <tr>
                         <th>Title</th>
-                        <th>Date Created</th>
+                        <th>Seller ID</th>
+                        <th>Date Sold</th>
                         <th>Status</th>
                         <th>Purchase Price</th>
                     </tr>

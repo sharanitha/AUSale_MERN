@@ -9,6 +9,7 @@ function CreateProduct() {
 
     const state = useContext(GlobalState)
     const [userID] = state.userAPI.userID
+    const [userEmail] = state.userAPI.userEmail
 
     const initialState = {
         title : '',
@@ -19,7 +20,9 @@ function CreateProduct() {
         category: '',
         _id: '',
         seller: `${userID}`,
-        buyer: ''
+        sellerEmail: `${userEmail}`,
+        buyer: '',
+        buyerEmail: ''
     }
     const [product, setProduct] = useState(initialState)
     const [categories] = state.categoriesAPI.categories
@@ -184,12 +187,6 @@ function CreateProduct() {
                     <label htmlFor="description">Description</label>
                     <textarea type="text" name="description" id="description" required
                     value={product.description} rows="5" onChange={handleChangeInput} />
-                </div>
-
-                <div className="row">
-                    <label htmlFor="content">Content</label>
-                    <textarea type="text" name="content" id="content" required
-                    value={product.content} rows="7" onChange={handleChangeInput} />
                 </div>
 
                 <div className="row">
