@@ -56,16 +56,18 @@ function Products() {
 
     //for listing items that the logged in user has created
     const createdList = []
+    const pendingList = []
     const soldList = []
 
     var total = 0;
 
     products.forEach((product) =>{
-        if(product.seller === userID && product.status !== "Sold"){
+        if(product.seller === userID && product.status === "For Sale"){
             createdList.push(<tr key={product._id}>
                 <td>{product.title}</td>
-                <td>{product.createdAt}</td>
+                <td>{new Date(product.createdAt).toLocaleDateString()}</td>
                 <td>{product.status}</td>
+                <td>${product.price}.00</td>
                 <td><Link to={`/edit_product/${product._id}`}>
                         Edit
                     </Link></td>
@@ -73,12 +75,26 @@ function Products() {
                         Delete
                     </Link></td>
             </tr>)
-        } else if(product.seller === userID && product.status === "Sold"){
+        }else if(product.seller === userID && product.status === "Pending"){
+            pendingList.push(<tr key={product._id}>
+                <td>{product.title}</td>
+                <td>{new Date(product.updatedAt).toLocaleDateString()}</td>
+                <td>{product.status}</td>
+                <td>{product.buyerEmail}</td>
+                <td>${product.price}.00</td>
+                <td><Link to={`/edit_product/${product._id}`}>
+                        Edit
+                    </Link></td>
+                <td><Link to="#!" onClick={() =>deleteProduct(product._id, product.images.public_id)}>
+                        Delete
+                    </Link></td>
+            </tr>)
+        }else if(product.seller === userID && product.status === "Sold"){
             soldList.push(<tr key={product._id}>
                 <td>{product.title}</td>
-                <td>{product.createdAt}</td>
+                <td>{new Date(product.updatedAt).toLocaleDateString()}</td>
                 <td>{product.status}</td>
-                <td>{product.price}</td>
+                <td>${product.price}.00</td>
             </tr>)
 
             total += product.price
@@ -88,7 +104,7 @@ function Products() {
     if(loading) return <div><Loading /></div>
     return (
         <div className="history-page">
-            <h2>My Products</h2>
+            <h2>My Products For Sale:</h2>
 
             <table>
                 <thead>
@@ -96,12 +112,33 @@ function Products() {
                         <th>Title</th>
                         <th>Date Created</th>
                         <th>Status</th>
+                        <th>Price</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     {createdList}
+                </tbody>
+            </table>
+
+            <br></br>
+            <h2>Pending Products:</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Date Bought</th>
+                        <th>Status</th>
+                        <th>Buyer Email</th>
+                        <th>Price</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {pendingList}
                 </tbody>
             </table>
 
@@ -122,7 +159,7 @@ function Products() {
                 </tbody>
             </table>
 
-            <h2>Total Sold: ${total}</h2>
+            <h2>Total Sold: ${total}.00</h2>
 
         </div>
     )

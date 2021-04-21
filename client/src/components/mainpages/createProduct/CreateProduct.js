@@ -3,12 +3,13 @@ import axios from 'axios'
 import {GlobalState} from '../../../GlobalState'
 import Loading from '../utils/loading/Loading'
 import {useHistory, useParams} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 function CreateProduct() {
 
     const state = useContext(GlobalState)
     const [userID] = state.userAPI.userID
-
+    const [userEmail] = state.userAPI.userEmail
 
     const initialState = {
         title : '',
@@ -19,7 +20,9 @@ function CreateProduct() {
         category: '',
         _id: '',
         seller: `${userID}`,
-        buyer: ''
+        sellerEmail: `${userEmail}`,
+        buyer: '',
+        buyerEmail: ''
     }
     const [product, setProduct] = useState(initialState)
     const [categories] = state.categoriesAPI.categories
@@ -59,6 +62,11 @@ function CreateProduct() {
         }
     }, [param.id, products])
 
+
+    const goBack = () => {
+        history.goBack()
+    }
+    
     //handles image uploads
     const handleUpload = async e =>{
         e.preventDefault()
@@ -182,12 +190,6 @@ function CreateProduct() {
                 </div>
 
                 <div className="row">
-                    <label htmlFor="content">Content</label>
-                    <textarea type="text" name="content" id="content" required
-                    value={product.content} rows="7" onChange={handleChangeInput} />
-                </div>
-
-                <div className="row">
                     <label htmlFor="categories">Categories: </label>
                     <select name="category" value={product.category} onChange={handleChangeInput} >
                         <option value="">Please select a category</option>
@@ -216,6 +218,10 @@ function CreateProduct() {
                 }
 
                 <button type='submit'>{onEdit ? "Update" : "Create"}</button>
+                <div class="divider"/>
+                <button type="button" onClick={goBack}>
+                    Go back
+                </button>
             </form>
         </div>
     )

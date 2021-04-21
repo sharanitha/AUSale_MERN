@@ -40,7 +40,7 @@ function Register() {
                 placeholder="Email" value={user.email} onChange={onChangeInput} />
 
                 <input type="password" name="password" required autoComplete="on"
-                placeholder="Password" value={user.password} onChange={onChangeInput} />
+                placeholder="Password (6 characters or more)" value={user.password} onChange={onChangeInput} />
 
                 <div className="row">
                     <button type="submit">Register</button>

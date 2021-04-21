@@ -15,10 +15,6 @@ class APIfeatures {
        let queryStr = JSON.stringify(queryObj)
        queryStr = queryStr.replace(/\b(gte|gt|lt|lte|regex)\b/g, match => '$' + match)
 
-    //    gte = greater than or equal
-    //    lte = lesser than or equal
-    //    lt = lesser than
-    //    gt = greater than
        this.query.find(JSON.parse(queryStr))
          
        return this;
@@ -69,11 +65,11 @@ const productCtrl = {
         try {
             //console.log("Req body: ", req.body)
 
-            const {title, price, description, content, status, images, category, seller, buyer} = req.body;
+            const {title, price, description, status, images, category, seller, sellerEmail, buyer, buyerEmail} = req.body;
             if(!images) return res.status(400).json({msg: "No image upload"})
 
             const newProduct = new Products({
-                title: title.toLowerCase(), price, description, content, status, images, category, seller, buyer
+                title: title.toLowerCase(), price, description, status, images, category, seller, sellerEmail, buyer, buyerEmail
             });
 
             //res.json(newProduct)
@@ -95,11 +91,11 @@ const productCtrl = {
     },
     updateProduct: async(req, res) =>{
         try {
-            const {title, price, description, content, status, images, category, buyer} = req.body;
+            const {title, price, description, status, images, category, buyer, sellerEmail, buyerEmail} = req.body;
             if(!images) return res.status(400).json({msg: "No image upload"})
 
             await Products.findOneAndUpdate({_id: req.params.id}, {
-                title: title.toLowerCase(), price, description, content, status, images, category, buyer
+                title: title.toLowerCase(), price, description, status, images, category, buyer, sellerEmail, buyerEmail
             })
 
             res.json({msg: "Updated a Product"})

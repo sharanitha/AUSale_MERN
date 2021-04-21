@@ -15,10 +15,6 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    content:{
-        type: String,
-        required: true
-    },
     status:{
         type: String,
     },
@@ -33,7 +29,13 @@ const productSchema = new mongoose.Schema({
     seller:{
         type: String,
     },
+    sellerEmail:{
+        type: String,
+    },
     buyer:{
+        type: String,
+    },
+    buyerEmail:{
         type: String,
     },
     checked:{

@@ -76,7 +76,6 @@ function Header() {
                 <li><Link to="/">{isAdmin ? 'Products' : 'Shop'}</Link></li>
 
                 {isAdmin && adminRouter()}
-                {console.log(isAdmin)}
 
                 {
                     isLogged && !isAdmin ? regUserRouter() : ''
