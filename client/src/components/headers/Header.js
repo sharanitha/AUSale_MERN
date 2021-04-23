@@ -88,16 +88,6 @@ function Header() {
                 </li>
 
             </ul>
-
-            {
-                isAdmin ? '' 
-                :<div className="cart-icon">
-                    <span>{cart.length}</span>
-                    <Link to="/cart">
-                        <img src={Cart} alt="" width="30" />
-                    </Link>
-                </div>
-            }
             
         </header>
     )
