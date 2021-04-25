@@ -1,5 +1,6 @@
 const Users = require('../models/userModel')
 const Payments = require('../models/paymentModel')
+//const Reports = require('../models/reportModel')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -128,6 +129,24 @@ const userCtrl = {
         }
     },
     history: async(req, res) =>{
+        try {
+            const history = await Payments.find({user_id: req.user.id})
+
+            res.json(history)
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
+    },
+    reports: async(req,res) => {
+        try {
+            const history = await Payments.find({user_id: req.user.id})
+
+            res.json(history)
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
+    },
+    myProducts: async(req,res) => {
         try {
             const history = await Payments.find({user_id: req.user.id})
 
